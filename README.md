@@ -168,35 +168,6 @@ if expected_status == HttpStatusCodes.HTTP_BAD_REQUEST:
 - **Used in**: `test_get_joke_by_category` (NonExisting category)
 - **Benefits**: Ensures robust error handling and meaningful error messages for debugging
 
-## Parametrize Usage
-
-This test suite uses `pytest.mark.parametrize` to reduce code duplication while maintaining high coverage:
-
-### Example 1: Category Testing
-```python
-@pytest.mark.parametrize("category", [
-    "Programming",
-    "Knock-Knock",
-    "General"
-])
-def test_joke_by_category_returns_success(self, base_url, api_session, category):
-    response = api_session.get(f"{base_url}/joke/{category}")
-    assert response.status_code == 200
-```
-- **Effect**: Runs the same test 3 times with different categories
-- **Coverage**: Tests 3 different API endpoints in one test function
-
-### Example 2: Call Frequency Testing
-```python
-@pytest.mark.parametrize("range_count", [1, 5, 10])
-def test_different_call_frequencies(self, base_url, api_session, range_count):
-    for _ in range(range_count):
-        response = api_session.get(f"{base_url}/joke/Any")
-        assert response.status_code == 200
-```
-- **Effect**: Runs test with 1, 5, and 10 sequential calls
-- **Coverage**: Tests API stability under different loads
-
 ## Total Test Coverage
 
 - **Test Methods**: 4 comprehensive test functions
